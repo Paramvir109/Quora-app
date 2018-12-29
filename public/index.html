@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+            <link rel="stylesheet" href="/css/styles.css"/>
+            <title>Join | Quora</title>
+    </head>
+
+    <body class="centered-form"> 
+       <div class="centered-form__form">
+            <form action="/main.html" ><!--After submision this url is gonna open-->
+                <div class="form-field">
+                    <h3>New User?</h3>
+                </div>
+                <input type="hidden" name="type" value="signup">
+                <div class="form-field">
+                    <label>Email</label>
+                    <input type="email" name="email" autofocus autocomplete="off" required/>
+                </div>
+                <div class="form-field">
+                    <label>Password</label>
+                    <input type="password"  name="pass" autocomplete="off" required minlength="6"/>
+                </div>
+                <div class="form-field">
+                    <button >Sign up</button>
+                </div>
+            </form>
+            <form action="/main.html">
+                <div class="form-field">
+                    <h3>Start Exploring</h3>
+                </div>
+                <input type="hidden" name="type" value="login">
+                <div class="form-field">
+                    <label>Email</label>
+                    <input type="email" name="email" autofocus autocomplete="off" required/>
+                </div>
+                <div class="form-field">
+                    <label>Password</label>
+                    <input type="password"  name="pass" autocomplete="off" required minlength="6"/>
+                </div>
+                <div class="form-field">
+                    <button >Log In</button>
+                </div>
+            </form>
+       </div>
+
+    </body>
+</html>
