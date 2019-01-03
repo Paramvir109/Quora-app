@@ -4,16 +4,50 @@
     <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-            <link rel="stylesheet" href="/css/styles.css"/>
+            <link rel="stylesheet" href="./css/styles2.css"/>
+            <link rel="stylesheet" href="./css/w3.css" type="text/css"/>
             <title>Main | Quora</title>
     </head>
 
     <body > 
+
        
-       <h1>Welcome to main page</h1>
+       <h1 class="w3-center">Welcome to main page</h1>
+        <div id="user-questions" class="w3-container w3-white w3-left w3-border w3-round-large">
+            <h3>Your Questions</h2>
+                <div class="w3-container">
+                    <ul class="w3-ul">
+
+                    </ul>
+                </div>
+                <div class="w3-container">
+                    <button onclick="document.getElementById('question-modal').style.display='block'"
+                    class="w3-button">Ask</button>
+                </div>
+
+        </div>
+        
+         <div id="question-modal" class="w3-modal">
+                <div id="question-box"class=" w3-animate-zoom">
+                    <textarea id="question-text-area"placeholder="Ask your question here"></textarea>
+                    <button id="submit-ques"class="w3-right">Submit</button>
+                </div>
+         </div>
+        <div id="other-user-questions" class="w3-container w3-white w3-right w3-border w3-round-large">
+            <h3> Questions asked by other users</h2>
+                <div class="w3-container">
+                    <ul class="w3-ul">
+
+                    </ul>
+                </div>
+                <div class="w3-container">
+                    
+                </div>
+        </div>
        <script src = "/socket.io/socket.io.js"></script>
-       <script src = "/js/libs/jquery-3.3.1.min.js"></script>
+       <script src = "./js/libs/jquery-3.3.1.min.js"></script>
        <script src = "/js/libs/deparam.js"></script>
        <script src = "/js/client.js "></script>
+       <script src = "./js/main.js "></script>
     </body>
 </html>

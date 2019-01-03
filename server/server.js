@@ -1,6 +1,7 @@
 const http = require('http')
 const path = require('path')
 
+require('./config/config.js')
 const express = require('express')
 const socketIO = require('socket.io')
 const {mongoose} = require('./db/mongoose')
@@ -38,8 +39,8 @@ io.on('connection' ,(socket) => {
             try {
                 let user = await User.findByCredentials(params.email, params.pass)
                 if(user) {
-                    let token = user.generateAuthToken()
-                    socket.emit('login-token', {token})
+                    let token = await user.generateAuthToken()
+                    socket.emit('login-token', token)
                     return callback()
                 }
                 callback('Incorrect email or pass!')
@@ -49,6 +50,18 @@ io.on('connection' ,(socket) => {
         }
         return callback('Enter valid id and password')
     })
+    socket.on('submit-question' ,(params,callback) => {
+        let user = User.findByToken(params.token).then((user) => {
+            if(user) {
+                
+            }
+            else {
+                return callback('Unauthorised')
+            }
+        }).catch((e) => {
+            return callback(e)
+        })
+    })
     
 })
 
@@ -56,3 +69,4 @@ io.on('connection' ,(socket) => {
 server.listen(port, () => {
     console.log(`Server is up and running on ${port}`)
 })
+module.exports = {app,server,io}

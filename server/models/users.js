@@ -62,10 +62,25 @@ UserSchema.statics.findByCredentials = async function(email, password) {
 UserSchema.methods.generateAuthToken = function () {
     let user = this
     let access = 'auth'
-    let token = jwt.sign({_id : user._id, access},'bca231').toString()
+    let token = jwt.sign({_id : user._id, access},process.env.JWT_SECRET).toString()
     user.tokens = user.tokens.concat([{access, token}])
     return user.save().then(() => {
         return token
+    })
+
+}
+UserSchema.statics.findByToken =  function(token) {
+    let User = this;
+    let decoded
+    try {
+        decoded = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return Promise.reject();
+    }
+    return User.findOne({
+        '_id' : decoded._id,
+        'tokens.access' : decoded.access,
+        'tokens.token' : token
     })
 
 }

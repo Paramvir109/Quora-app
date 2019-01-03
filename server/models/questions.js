@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
-const _ = require('lodash')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
-var QuestionSchema = new mongoose.Schema( {
+var QuestionSchema = mongoose.model('Question', {
     question : {
         type : String,
         required : true
@@ -40,3 +36,5 @@ QuestionSchema.methods.addAnswer = function(text, email) {
         return question 
     })
 }
+var Question = mongoose.model('Question', QuestionSchema)
+module.exports = {Question}

@@ -1,0 +1,12 @@
+{
+    "test" : {
+        "PORT" : 3000,
+        "MONGODB_URI" : "mongodb://localhost:27017/QuoraAppTest",
+        "JWT_SECRET" : "ladfaosdpuh2143b32"
+    },
+    "development" : {
+        "PORT" : 3000,
+        "MONGODB_URI" : "mongodb://localhost:27017/QuoraApp",
+        "JWT_SECRET" : "10823ofahdlfup238"
+    }
+}

@@ -1,0 +1,18 @@
+body  {
+    background-color: #ff8383
+}
+#question-box {
+    height: 200px;
+    width: 400px;
+    background: white;
+    padding: 2%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -200px;
+}
+#question-text-area {
+    height: 80%;
+    width: 100%;
+}
