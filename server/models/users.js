@@ -31,6 +31,10 @@ var UserSchema = new mongoose.Schema({
         token : {
             type : String,
             required : true
+        },
+        socketID : {
+            type : String,
+            required : true
         }
 
     }]
@@ -59,15 +63,23 @@ UserSchema.statics.findByCredentials = async function(email, password) {
 
 
 }
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = function (socketID) {
     let user = this
     let access = 'auth'
     let token = jwt.sign({_id : user._id, access},process.env.JWT_SECRET).toString()
-    user.tokens = user.tokens.concat([{access, token}])
+    user.tokens = user.tokens.concat([{access, token, socketID}])
     return user.save().then(() => {
         return token
     })
 
+}
+UserSchema.methods.removeToken = function(socketID) {
+    var user = this;
+    return user.update({
+        $pull : {
+            tokens : {socketID}
+        }
+    })
 }
 UserSchema.statics.findByToken =  function(token) {
     let User = this;
@@ -83,6 +95,13 @@ UserSchema.statics.findByToken =  function(token) {
         'tokens.token' : token
     })
 
+}
+UserSchema.statics.findBySocketID =  function(socketID) {
+    let User = this;
+    
+    return User.findOne({
+        'tokens.socketID' : socketID
+    })
 }
 
 UserSchema.pre('save', function(next) {//mongoose middleware

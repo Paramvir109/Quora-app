@@ -7,6 +7,8 @@ const socketIO = require('socket.io')
 const {mongoose} = require('./db/mongoose')
 const {isValidString} = require('./utils/validate')
 let {User} = require('./models/users')
+let {Question} = require('./models/questions')
+
 
 
 
@@ -20,13 +22,16 @@ app.use(express.static(publicPath))
 
 io.on('connection' ,(socket) => {
 
-    socket.on('new-signup', async (params,callback) => {
-        console.log(params)
+    socket.on('join' , () => {
+        console.log('New User')
+    })
+
+    socket.on('newSignup', async (params,callback) => {
         if(isValidString(params.email) && isValidString(params.pass)) {
             try {
                 let body = {email : params.email, password : params.pass}
                 let newUser = new User(body)
-                let user = await newUser.save()
+                await newUser.save()
             } catch (error) {
                 return callback(error.message)
             }
@@ -34,14 +39,18 @@ io.on('connection' ,(socket) => {
         }
         return callback('Enter valid id and password')
     })
-    socket.on('new-login', async (params,callback) => {
+    socket.on('newLogin', async (params,callback) => {
         if(isValidString(params.email) && isValidString(params.pass)) {
             try {
                 let user = await User.findByCredentials(params.email, params.pass)
                 if(user) {
-                    let token = await user.generateAuthToken()
-                    socket.emit('login-token', token)
-                    return callback()
+                    let token = await user.generateAuthToken(socket.id)
+                    socket.emit('loginToken', token)
+                    callback()
+                    let allQuestions = await Question.find({})
+                    let ourQues = allQuestions.filter((ques) => ques.askedBy === params.email)
+                    let otherQues = allQuestions.filter((ques) => ques.askedBy !== params.email)
+                    socket.emit('populateQuestions', {ourQues,otherQues})
                 }
                 callback('Incorrect email or pass!')
             } catch (error) {
@@ -50,17 +59,32 @@ io.on('connection' ,(socket) => {
         }
         return callback('Enter valid id and password')
     })
-    socket.on('submit-question' ,(params,callback) => {
-        let user = User.findByToken(params.token).then((user) => {
+    socket.on('disconnect' , async() => {
+        let user = await User.findBySocketID(socket.id)
+        if(user) {//user can return null when we just signup
+            await user.removeToken(socket.id)
+        }
+        
+    })
+    socket.on('submitQuestion' ,async (params,callback) => {
+        try {
+            let user = await User.findByToken(params.token) 
             if(user) {
-                
+                let myQuestion = new Question({
+                        question : params.questionText,
+                        askedBy : user.email,
+                        _creator : user._id,
+                })
+                await myQuestion.save()
+                return callback()
             }
             else {
                 return callback('Unauthorised')
             }
-        }).catch((e) => {
-            return callback(e)
-        })
+        } catch (error) {
+            return callback(e.message)
+        }
+        
     })
     
 })

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-var QuestionSchema = mongoose.model('Question', {
+var QuestionSchema = new mongoose.Schema({
     question : {
         type : String,
         required : true
