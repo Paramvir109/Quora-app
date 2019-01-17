@@ -11,14 +11,16 @@
 
     <body > 
 
+       <div id="logo" class="w3-center w3-container w3-padding">
+        <img src="./imgs/quora-logo.png"class="w3-center" height="5%" width="20%">
+       </div>
        
-       <h1 class="w3-center">Welcome to main page</h1>
             <div id="user-questions" class="w3-container w3-white w3-left w3-border w3-round-large">
             <h3 class="w3-center">Your Questions</h2>
-                <div class="w3-container">
-                    <ol id="user-ques-list"class="w3-ol">
-                        
-                    </ol>
+                <div class="w3-container w3-responsive">
+                        <table id="user-ques-table"class="w3-table-all w3-striped ">
+                                
+                        </table>
                 </div>
                 <div class="w3-container">
                     <button id="ask-ques"onclick="document.getElementById('question-modal').style.display='block'"
@@ -37,8 +39,9 @@
             <div id="other-user-questions" class="w3-container w3-white w3-right w3-border w3-round-large">
                 <h3 class="w3-center"> Questions asked by other users</h2>
                     <div class="w3-container">
-                        <ol id="other-user-ques-list"class="w3-ol">
-                        </ol>
+                            <table id="other-user-ques-table"class="w3-table-all w3-striped w3-responsive">
+                                    
+                            </table>
                     </div>
                     <div class="w3-container">
                         

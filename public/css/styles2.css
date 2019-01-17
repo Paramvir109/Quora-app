@@ -19,3 +19,14 @@ body  {
 #ask-ques {
     margin-left: 36%;
 }
+#user-questions {
+    margin-left: 10%;
+    width: 40%;
+    text-overflow: ellipsis;
+}
+#other-user-questions {
+    margin-right: 7%;
+    width: 40%;
+    text-overflow: ellipsis;
+
+}

@@ -7,6 +7,7 @@ $(document).mouseup(function(e)
         $("#question-modal").css("display","none")
     }
 });
+
 // $('#submit-ques').on('click', function() {
 //     let questionText = $.trim($('#question-text-area').val())
 //     if(questionText.length === 0) {
