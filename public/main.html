@@ -3,7 +3,7 @@
 <html>
     <head>
             <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
             <link rel="stylesheet" href="./css/styles2.css"/>
             <link rel="stylesheet" href="./css/w3.css" type="text/css"/>
             <title>Main | Quora</title>
@@ -17,14 +17,14 @@
        
             <div id="user-questions" class="w3-container w3-white w3-left w3-border w3-round-large">
             <h3 class="w3-center">Your Questions</h2>
-                <div class="w3-container w3-responsive">
+                <div class="w3-container" style="overflow-x:auto; height:50vh; overflow-y:auto;">
                         <table id="user-ques-table"class="w3-table-all w3-striped ">
                                 
                         </table>
                 </div>
                 <div class="w3-container">
                     <button id="ask-ques"onclick="document.getElementById('question-modal').style.display='block'"
-                    class="w3-button w3-center w3-border">Ask</button>
+                    class="w3-button w3-center w3-round">Ask</button>
                 </div>
 
             </div>        
@@ -38,8 +38,8 @@
         
             <div id="other-user-questions" class="w3-container w3-white w3-right w3-border w3-round-large">
                 <h3 class="w3-center"> Questions asked by other users</h2>
-                    <div class="w3-container">
-                            <table id="other-user-ques-table"class="w3-table-all w3-striped w3-responsive">
+                    <div class="w3-container" style="overflow-x:auto; height: 50vh; overflow-y:auto;">
+                            <table id="other-user-ques-table"class="w3-table-all w3-bordered w3-striped ">
                                     
                             </table>
                     </div>

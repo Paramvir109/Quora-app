@@ -24,7 +24,7 @@ socket.on('connect', function() {
     }
 })
 socket.on('populateQuestions', function(questions) {
-   let html = `<tr>
+   let html = `<tr class="table-heading">
         <th>S.no.</th>
         <th>Question</th>
     </tr>`
@@ -34,7 +34,7 @@ socket.on('populateQuestions', function(questions) {
         html += `<td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td></tr>`
    })
    userQues.html(html)
-   html = `<tr>
+   html = `<tr class="table-heading">
             <th>S.no.</th>
             <th>Question</th>
             <th>Asked by</th>
