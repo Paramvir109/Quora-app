@@ -1,3 +1,4 @@
+
 var socket = io()
 
 
@@ -27,11 +28,16 @@ socket.on('populateQuestions', function(questions) {
    let html = `<tr class="table-heading">
         <th>S.no.</th>
         <th>Question</th>
+        <th></th>
     </tr>`
    let userQues = $('#user-ques-table')
    questions.ourQues.forEach((ques,index) => {
-        html += `<tr><td>${index + 1}</td>`
-        html += `<td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td></tr>`
+       //dont change the order as you will have to change remove ques function
+        html += `<tr>
+        <td>${index + 1}</td>
+        <td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td>
+        <td><button id="remove-ques"class="w3-button w3-round">Remove</button></td>
+        </tr>`
    })
    userQues.html(html)
    html = `<tr class="table-heading">
@@ -78,6 +84,22 @@ socket.on('loginToken', function(token) {
         let question = $(this).text()
         let query =  $.param({question})
         document.location.href = '/question.html?' + query
+    })
+    $('#logout-button').on('click', function() {
+        sessionStorage.removeItem('token')
+        document.location.href = '/?logout'
+    })
+    $(document).on('click','#remove-ques', function() {
+       let td = (this.parentNode.previousElementSibling)
+       let question = $(td).children("a").html()
+    //    console.log(question)
+        socket.emit('removeQues', {question,token : sessionStorage.getItem('token')}, function(err) {
+            if(err) {
+                alert(err)
+            } else {
+                alert('Question removed')
+            }
+        })
     })
     
 })

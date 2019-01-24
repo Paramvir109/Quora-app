@@ -103,6 +103,17 @@ io.on('connection' ,(socket) => {
         
         
     })
+    socket.on('removeQues', async(params, callback) => {
+        try {
+            let user = await User.findByToken(params.token)
+            let removedQues = await Question.findOneAndDelete({question:params.question,askedBy : user.email})
+            callback()
+        } catch (error) {
+            callback(error.message)
+        }
+        
+        
+    })
     
     
 })
