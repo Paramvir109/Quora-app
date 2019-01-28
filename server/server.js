@@ -8,6 +8,7 @@ const {mongoose} = require('./db/mongoose')
 const {isValidString} = require('./utils/validate')
 let {User} = require('./models/users')
 let {Question} = require('./models/questions')
+const {getQues} = require('./utils/getQuestions')
 
 
 
@@ -42,11 +43,8 @@ io.on('connection' ,(socket) => {
                 let user = await User.findByCredentials(params.email, params.pass)
                 if(user) {
                     let token = await user.generateAuthToken()
-                    let allQuestions = await Question.find({})
-                    let ourQues = allQuestions.filter((ques) => ques.askedBy === params.email)
-                    let otherQues = allQuestions.filter((ques) => ques.askedBy !== params.email)
-                    
-                    socket.emit('populateQuestions', {ourQues,otherQues})
+                    let res = await getQues(params.email)
+                    socket.emit('populateQuestions', {ourQues : res.ourQues,otherQues : res.otherQues})
                     socket.emit('loginToken', token)//This order is necessary
                     
                     return callback()
@@ -76,7 +74,9 @@ io.on('connection' ,(socket) => {
                         _creator : user._id,
                 })
                 await myQuestion.save()
-                return callback()
+                callback()
+                let res = await getQues(user.email)
+                socket.emit('populateQuestions', {ourQues : res.ourQues,otherQues : res.otherQues})
             }
             else {
                 return callback('Unauthorised')
@@ -108,6 +108,8 @@ io.on('connection' ,(socket) => {
             let user = await User.findByToken(params.token)
             let removedQues = await Question.findOneAndDelete({question:params.question,askedBy : user.email})
             callback()
+            let res = await getQues(user.email)
+            socket.emit('populateQuestions', {ourQues : res.ourQues,otherQues : res.otherQues})
         } catch (error) {
             callback(error.message)
         }

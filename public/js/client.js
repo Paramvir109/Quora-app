@@ -25,7 +25,7 @@ socket.on('connect', function() {
     }
 })
 socket.on('populateQuestions', function(questions) {
-   let html = `<tr class="table-heading">
+   let html = `<tr class="table-heading  w3-animate-opacity">
         <th>S.no.</th>
         <th>Question</th>
         <th></th>
@@ -33,21 +33,21 @@ socket.on('populateQuestions', function(questions) {
    let userQues = $('#user-ques-table')
    questions.ourQues.forEach((ques,index) => {
        //dont change the order as you will have to change remove ques function
-        html += `<tr>
+        html += `<tr class="w3-animate-opacity">
         <td>${index + 1}</td>
         <td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td>
         <td><button id="remove-ques"class="w3-button w3-round">Remove</button></td>
         </tr>`
    })
    userQues.html(html)
-   html = `<tr class="table-heading">
+   html = `<tr class="table-heading  w3-animate-opacity">
             <th>S.no.</th>
             <th>Question</th>
             <th>Asked by</th>
         </tr>`
    let otherQues = $('#other-user-ques-table')
     questions.otherQues.forEach((ques,index) => {
-        html += `<tr><td>${index + 1}</td>`
+        html += `<tr class="w3-animate-opacity"><td>${index + 1}</td>`
         html += `<td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td>`
         html += `<td>${ques.askedBy}</td></tr>`
     })
@@ -97,7 +97,7 @@ socket.on('loginToken', function(token) {
             if(err) {
                 alert(err)
             } else {
-                alert('Question removed')
+                alert('Question removed successfully!')
             }
         })
     })
