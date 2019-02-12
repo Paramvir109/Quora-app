@@ -1,5 +1,5 @@
 body  {
-    background-color: #c33f3f;
+    background-image: url("./../imgs/bg.jpg");
 }
 #question-box {
     height: 200px;
@@ -27,13 +27,11 @@ body  {
     background-color: silver;
 }
 #user-questions {
-    margin-left: 7vw;
-    width: 80vh;
+
     height: 70vh;
 }
 #other-user-questions {
-    margin-right: 7vw;
-    width: 80vh;
+
     padding-bottom: 2%;
     height: 70vh;
 
@@ -42,8 +40,7 @@ body  {
 #logout-button {
     
     background-color: silver;
-    float:center;
-    margin-left: 3%
+    margin-left: 47%;
 }
 
 
