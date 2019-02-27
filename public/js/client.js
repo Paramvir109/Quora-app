@@ -87,7 +87,7 @@ socket.on('loginToken', function(token) {
     })
     $('#logout-button').on('click', function() {
         sessionStorage.removeItem('token')
-        document.location.href = '/?logout'
+        document.location.href = '/'
     })
     $(document).on('click','#remove-ques', function() {
        let td = (this.parentNode.previousElementSibling)

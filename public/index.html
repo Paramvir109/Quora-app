@@ -4,7 +4,7 @@
     <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-            <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+            <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"/> -->
             <link rel="stylesheet" href="/css/index.css"/>
             <link rel="stylesheet" href="/css/w3.css"/>
 
@@ -18,40 +18,51 @@
             <div id="logo" class="w3-center w3-container w3-padding">
                     <img src="./imgs/quora-logo.png"class="w3-center" height="8%" width="30%">
             </div>
-            <form action="/main.html" ><!--After submision this url is gonna open-->
-                <div class="form-field">
-                    <h3>New User?</h3>
-                </div>
-                <input type="hidden" name="type" value="signup">
-                <div class="form-field">
-                    <label>Email</label>
-                    <input type="email" name="email" autofocus autocomplete="off" required/>
-                </div>
-                <div class="form-field">
-                    <label>Password</label>
-                    <input type="password"  name="pass" autocomplete="off" required minlength="6"/>
-                </div>
-                <div class="form-field">
-                    <button >Sign up</button>
-                </div>
-            </form>
-            <form action="/main.html">
-                <div class="form-field">
-                    <h3>Start Exploring</h3>
-                </div>
-                <input type="hidden" name="type" value="login">
-                <div class="form-field">
-                    <label>Email</label>
-                    <input type="email" name="email" autofocus autocomplete="off" required/>
-                </div>
-                <div class="form-field">
-                    <label>Password</label>
-                    <input type="password"  name="pass" autocomplete="off" required minlength="6"/>
-                </div>
-                <div class="form-field">
-                    <button >Log In</button>
-                </div>
-            </form>
+            <div class="centered-two-forms">
+                    <div>
+                            <form action="/main.html" ><!--After submision this url is gonna open-->
+                                <div class="form-field">
+                                    <h3>New User?</h3>
+                                </div>
+                                <input type="hidden" name="type" value="signup">
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <input type="email" name="email" autofocus autocomplete="off" required/>
+                                </div>
+                                <div class="form-field">
+                                    <label>Password</label>
+                                    <input type="password"  name="pass" autocomplete="off" required minlength="6"/>
+                                </div>
+                                <div class="form-field">
+                                    <button >Sign up</button>
+                                </div>
+                            </form>
+        
+                    </div>
+                    <div>
+                            <form action="/main.html">
+                                <div class="form-field">
+                                    <h3>Enter here</h3>
+                                </div>
+                                <input type="hidden" name="type" value="login">
+                                <div class="form-field">
+                                    <label>Email</label>
+                                    <input type="email" name="email" autofocus autocomplete="off" required/>
+                                </div>
+                                <div class="form-field">
+                                    <label>Password</label>
+                                    <input type="password"  name="pass" autocomplete="off" required minlength="6"/>
+                                </div>
+                                <div class="form-field">
+                                    <button >Log In</button>
+                                </div>
+                            </form>
+        
+                    </div>
+            </div>
+            
+           
+           
        </div>
 
     </body>
