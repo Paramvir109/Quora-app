@@ -42,5 +42,11 @@ body  {
     background-color: silver;
     margin-left: 47%;
 }
-
+@media only screen and (max-width: 600px) {
+    /* For mobile phones: */
+    #question-box  {
+        width : 100%;
+        margin-left : -50%;
+    }
+}
 
