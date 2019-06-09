@@ -35,7 +35,7 @@ socket.on('populateQuestions', function(questions) {
        //dont change the order as you will have to change remove ques function
         html += `<tr class="w3-animate-opacity">
         <td>${index + 1}</td>
-        <td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td>
+        <td><a class="linkToQues"href="question.html">${ques.question}</a><span class="single-line-green"> ${ques.answers.length} answer(s)</span></td>
         <td><button id="remove-ques"class="w3-button w3-round">Remove</button></td>
         </tr>`
    })
@@ -48,7 +48,7 @@ socket.on('populateQuestions', function(questions) {
    let otherQues = $('#other-user-ques-table')
     questions.otherQues.forEach((ques,index) => {
         html += `<tr class="w3-animate-opacity"><td>${index + 1}</td>`
-        html += `<td><a class="linkToQues"href="question.html">${ques.question}</a> ${ques.answers.length} answer(s)</td>`
+        html += `<td><a class="linkToQues"href="question.html">${ques.question}</a> <span class="single-line-green">${ques.answers.length} answer(s)</span></td>`
         html += `<td>${ques.askedBy}</td></tr>`
     })
     otherQues.html(html)

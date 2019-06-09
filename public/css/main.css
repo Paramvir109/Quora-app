@@ -42,6 +42,10 @@ body  {
     background-color: silver;
     margin-left: 47%;
 }
+.single-line-green {
+    color : green;
+    white-space: nowrap;
+}
 @media only screen and (max-width: 600px) {
     /* For mobile phones: */
     #question-box  {
