@@ -82,11 +82,15 @@ socket.on('loginToken', function(token) {
     $(document).on('click','.linkToQues', function(e) {
         e.preventDefault()
         let question = $(this).text()
-        let query =  $.param({question})
-        document.location.href = '/question.html?' + query
+        // let query =  $.param({question})
+        sessionStorage.setItem('question',question);
+        // document.location.href = '/question.html?' + query
+        document.location.href = '/question.html'
+
     })
     $('#logout-button').on('click', function() {
-        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('question');
         document.location.href = '/'
     })
     $(document).on('click','#remove-ques', function() {

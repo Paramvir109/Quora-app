@@ -1,7 +1,15 @@
 var socket = io()
 socket.on('connect', function() {
-    let params = $.deparam(window.location.search)
-    socket.emit('reqQuestionThread', params)
+    // let params = $.deparam(window.location.search)
+    if(sessionStorage.getItem('token') === null){
+        alert('Not authorised');
+        document.location.href = '/';
+
+    }
+    else{
+        socket.emit('reqQuestionThread', {question : sessionStorage.getItem('question')})
+    }
+    
    
 
 })
